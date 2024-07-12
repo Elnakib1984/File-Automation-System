@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -11,6 +12,8 @@ var oop string = "oop"
 var DSA string = "Data Structure"
 
 var oc = os.Create
+
+var pl = fmt.Print
 
 func scanPdf() {
 
