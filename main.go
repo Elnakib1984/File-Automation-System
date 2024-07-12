@@ -24,8 +24,8 @@ func scanPdf() {
 
 func main() {
 
-	srcDir := "E:/semester 2/m213"
-	destDir := "E:/book/oop"
+	srcDir := "E:/semester 2/m213" //source
+	destDir := "E:/book/oop"       //destination
 
 	if _, err := os.Stat(destDir); os.IsNotExist(err) {
 		os.MkdirAll(destDir, os.ModePerm)
