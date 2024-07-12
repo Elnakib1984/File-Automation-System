@@ -5,22 +5,25 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func main() {
-	root := "D:/Books" // Change this to the root directory you want to start scanning from
+	root := "C:\\" // Change this to the root directory you want to start scanning from (e.g., "C:\\" for Windows)
 
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			log.Println(err) // log the error if any
-			return nil       // continue walking
+			// Log the error and continue walking
+			log.Printf("error accessing path %s: %v\n", path, err)
+			return nil // skip the directory or file causing the error
 		}
-		fmt.Println(path) // print the file/directory path
-		return nil        // continue walking
+		if !info.IsDir() && strings.HasSuffix(info.Name(), ".pdf") {
+			fmt.Println("Found PDF:", path) // print the file path if it is a PDF
+		}
+		return nil // continue walking
 	})
 
 	if err != nil {
 		log.Fatalf("error walking the path %v: %v\n", root, err)
 	}
-
 }
