@@ -1,4 +1,4 @@
-/*package main
+package main
 
 import (
 	"fmt"
@@ -53,7 +53,8 @@ func main() {
 	}
 
 	fmt.Println("PDF files ending with 'oop' moved successfully!")
-}*/
+}
+
 /*
 
 Some git commands
