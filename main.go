@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	root := "/" // Change this to the root directory you want to start scanning from
+	root := "D:/Books" // Change this to the root directory you want to start scanning from
 
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
