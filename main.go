@@ -11,6 +11,7 @@ import (
 var pdfSlice = []string{}
 
 func main() {
+	root := "C:\\" // Change this to the root directory you want to start scanning from (e.g., "C:\\" for Windows)
 
 	//srcDir := "C:"
 	//destDir := "D:"
@@ -21,21 +22,16 @@ func main() {
 		os.MkdirAll(destDir, os.ModePerm)
 	}
 
-	err := filepath.Walk(srcDir, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			return err
+			// Log the error and continue walking
+			log.Printf("error accessing path %s: %v\n", path, err)
+			return nil // skip the directory or file causing the error
 		}
-
-		if !info.IsDir() && strings.HasSuffix(info.Name(), "oop.pdf") {
-			oldPath := path
-			newPath := filepath.Join(destDir, info.Name())
-			err := os.Rename(oldPath, newPath)
-			if err != nil {
-				return err
-			}
-			fmt.Printf("Moved: %s -> %s\n", oldPath, newPath)
+		if !info.IsDir() && strings.HasSuffix(info.Name(), ".pdf") {
+			fmt.Println("Found PDF:", path) // print the file path if it is a PDF
 		}
-		return nil
+		return nil // continue walking
 	})
 
 	if err != nil {
@@ -43,4 +39,7 @@ func main() {
 	}
 
 	fmt.Println("PDF files ending with 'oop' moved successfully!")
+}
+		log.Fatalf("error walking the path %v: %v\n", root, err)
+	}
 }
