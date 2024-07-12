@@ -22,4 +22,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("error walking the path %v: %v\n", root, err)
 	}
+
 }
