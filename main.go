@@ -39,3 +39,4 @@ func main() {
 	}
 
 	fmt.Println("PDF files ending with 'oop' moved successfully!")
+}
